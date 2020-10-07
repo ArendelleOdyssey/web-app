@@ -1,0 +1,39 @@
+{
+  "name": "ao-custom-app",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.arendelleodyssey.webapp",
+    "productName": "Arendelle Odyssey (Web App)",
+    "copyright" : "${author}",
+    "artifactName" : "${productName} Installer.${ext}",
+    "mac" : {
+      "category" : "public.app-category.utilities",
+      "darkModeSupport" : true
+    },
+    "win" : {
+      "publisherName" : "${author} - Arendelle Odyssey"
+    },
+    "linux" : {
+      "target" : "deb",
+      "category" : "Utility"
+    }
+  },
+  "author": "Greep",
+  "license": "none",
+  "devDependencies": {
+    "electron": "^10.1.3",
+    "electron-builder": "^22.8.1"
+  },
+  "dependencies": {
+    "@treverix/custom-electron-titlebar": "^4.1.6",
+    "@treverix/remote": "^0.1.1"
+  }
+}
