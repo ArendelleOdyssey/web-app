@@ -11,7 +11,7 @@ function createWindow () {
       webPreferences: {
         enableRemoteModule: true,
         preload: path.join(__dirname, 'preload.js'),
-        nodeIntegration: true,
+        nodeIntegration: false,
       },
     })
     
@@ -23,18 +23,18 @@ function createWindow () {
 
     // and load the index.html of the app.
     //window.loadFile('content/index.html')
-    window.loadURL('https://arendelleodyssey.com')
-  
+    window.loadURL('https://arendelleodyssey.com/')
+
     if (!window.isMaximized()) window.maximize()
 
   // Open the DevTools.
   //window.webContents.openDevTools()
 
   window.webContents.on('new-window', function(e, url) {
+    if (url.startsWith('https://arendelleodyssey.api.oneall.com')) return 
     e.preventDefault();
     require('electron').shell.openExternal(url);
   });
-
 }
 
 // This method will be called when Electron has finished
