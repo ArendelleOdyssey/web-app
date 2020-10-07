@@ -16,7 +16,8 @@
     "artifactName" : "${productName} Installer.${ext}",
     "mac" : {
       "category" : "public.app-category.utilities",
-      "darkModeSupport" : true
+      "darkModeSupport" : true,
+      "target" : "dmg"
     },
     "win" : {
       "publisherName" : "${author} - Arendelle Odyssey"
