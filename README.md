@@ -1,6 +1,6 @@
 # Arendelle Odyssey Web App
 An app showing Arendelle Odyssey web page
-![screenshot](https://cdn.discordapp.com/attachments/662735703284908067/763360782477295636/unknown.png)$
+![screenshot](https://cdn.discordapp.com/attachments/662735703284908067/763360782477295636/unknown.png)
 
 ---
 
