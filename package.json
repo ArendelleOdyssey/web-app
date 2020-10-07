@@ -2,7 +2,7 @@
   "name": "ao-custom-app",
   "private": true,
   "version": "1.0.0",
-  "description": "",
+  "description": "Website application for Arendelle Odyssey",
   "main": "app.js",
   "scripts": {
     "start": "electron .",
