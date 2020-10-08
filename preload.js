@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // It does not make sense to use the custom titlebar on macOS where
   // it only tries to simulate what we get with the normal behavior anyway.
-  if (!isMacintosh) {
+  if (process.platform != 'darwin') {
 
     // add a menu
     const menu = new Menu();
