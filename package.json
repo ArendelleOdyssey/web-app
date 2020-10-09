@@ -1,30 +1,47 @@
 {
   "name": "ao-custom-app",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Website application for Arendelle Odyssey",
   "main": "app.js",
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "publish": "electron-builder -p always"
   },
   "build": {
     "appId": "com.arendelleodyssey.webapp",
     "productName": "Arendelle Odyssey (Web App)",
-    "copyright" : "${author}",
-    "artifactName" : "${productName} Installer.${ext}",
-    "mac" : {
-      "category" : "public.app-category.utilities",
-      "darkModeSupport" : true,
-      "target" : "dmg"
+    "copyright": "${author}",
+    "artifactName": "${productName} Installer.${ext}",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "ArendelleOdyssey",
+        "repo": "web-app"
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.utilities",
+      "darkModeSupport": true,
+      "target": "dmg",
+      "publish": [
+        "github"
+      ]
     },
-    "win" : {
-      "publisherName" : "${author} - Arendelle Odyssey"
+    "win": {
+      "publisherName": "${author} - Arendelle Odyssey",
+      "publish": [
+        "github"
+      ]
     },
-    "linux" : {
-      "target" : "deb",
-      "category" : "Utility"
+    "linux": {
+      "target": "deb",
+      "category": "Utility",
+      "publish": [
+        "github"
+      ]
     }
   },
   "author": "Greep",
@@ -35,6 +52,7 @@
   },
   "dependencies": {
     "@treverix/custom-electron-titlebar": "^4.1.6",
-    "@treverix/remote": "^0.1.1"
+    "@treverix/remote": "^0.1.1",
+    "electron-updater": "^4.3.5"
   }
 }

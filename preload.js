@@ -1,10 +1,9 @@
 // All of the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.
-const path = require('path');
-const url = require('url');
 const {isMacintosh} = require('@treverix/custom-electron-titlebar')
 const customTitlebar = require('@treverix/custom-electron-titlebar');
-const {Menu, MenuItem, ipcMain} = require('@treverix/remote')
+const {Menu} = require('@treverix/remote')
+const fs = require('fs')
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -21,4 +20,10 @@ window.addEventListener('DOMContentLoaded', () => {
         menu
     });
   }
+  
+  var style = document.createElement('style');
+  style.innerHTML = fs.readFileSync('./style.css', 'utf-8');
+  var socialLogin = document.querySelector('.oneall_social_login');
+  socialLogin.parentNode.removeChild(socialLogin);
+  document.head.appendChild(style);
 })

@@ -1,3 +1,5 @@
+const { autoUpdater } = require("electron-updater")
+autoUpdater.checkForUpdatesAndNotify()
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 require('@treverix/remote/main').initialize()
@@ -5,6 +7,8 @@ require('@treverix/remote/main').initialize()
 function createWindow () {
   // Create the browser window.
     const window = new BrowserWindow({
+      show : false,
+      backgroundColor: '#000F42',
       icon: 'build/icon.png',
       title: 'Arendelle Odyssey',
       frame: process.platform == 'darwin',  // the custom titlebar is useless on mac os
@@ -12,7 +16,7 @@ function createWindow () {
         enableRemoteModule: true,
         preload: path.join(__dirname, 'preload.js'),
         nodeIntegration: false,
-      },
+      }
     })
     
 
@@ -31,10 +35,22 @@ function createWindow () {
   //window.webContents.openDevTools()
 
   window.webContents.on('new-window', function(e, url) {
-    if (url.startsWith('https://arendelleodyssey.api.oneall.com')) return 
-    e.preventDefault();
-    require('electron').shell.openExternal(url);
+    if (!url.includes('arendelleodyssey.com')){
+      e.preventDefault();
+      require('electron').shell.openExternal(url);
+    }
   });
+
+  window.webContents.on('will-navigate', (e, url) => {
+    if (!url.includes('arendelleodyssey.com')){
+      e.preventDefault();
+      require('electron').shell.openExternal(url);
+    }
+  })
+
+  window.on('ready-to-show', () => {
+    window.show()
+  })
 }
 
 // This method will be called when Electron has finished
