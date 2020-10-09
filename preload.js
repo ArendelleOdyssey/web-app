@@ -24,6 +24,21 @@ window.addEventListener('DOMContentLoaded', () => {
 
   var style = document.createElement('style');
   style.innerHTML = `
+  .titlebar{
+    z-index: 999999;
+  }
+  #wpadminbar{
+    top: 30px; !important
+  }
+  
+  /* There two selectors below is for the backsite (admin dashboard) */
+  #adminmenu{
+    margin: 40px 0; !important
+  }
+  #wpbody{
+    top: 32px; !important
+  }
+
   /* Custom scrollbar */
 
   /* width */
