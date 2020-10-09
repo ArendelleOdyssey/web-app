@@ -5,6 +5,7 @@ require('@treverix/remote/main').initialize()
 function createWindow () {
   // Create the browser window.
     const window = new BrowserWindow({
+      show : false,
       icon: 'build/icon.png',
       title: 'Arendelle Odyssey',
       frame: process.platform == 'darwin',  // the custom titlebar is useless on mac os
@@ -12,7 +13,7 @@ function createWindow () {
         enableRemoteModule: true,
         preload: path.join(__dirname, 'preload.js'),
         nodeIntegration: false,
-      },
+      }
     })
     
 
@@ -35,6 +36,10 @@ function createWindow () {
     e.preventDefault();
     require('electron').shell.openExternal(url);
   });
+
+  window.on('ready-to-show', () => {
+    window.show()
+  })
 }
 
 // This method will be called when Electron has finished
