@@ -43,7 +43,6 @@ function createWindow () {
   });
 
   window.webContents.on('will-navigate', (e, url) => {
-    console.log(e)
     if (!url.includes(aourl)){
       e.preventDefault();
       require('electron').shell.openExternal(url);
