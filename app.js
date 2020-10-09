@@ -1,5 +1,6 @@
 const { autoUpdater } = require("electron-updater")
 autoUpdater.checkForUpdatesAndNotify()
+const aourl = 'https://arendelleodyssey.com'
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 require('@treverix/remote/main').initialize()
@@ -27,7 +28,7 @@ function createWindow () {
 
     // and load the index.html of the app.
     //window.loadFile('content/index.html')
-    window.loadURL('https://arendelleodyssey.com/')
+    window.loadURL(aourl)
 
     if (!window.isMaximized()) window.maximize()
 
@@ -35,14 +36,15 @@ function createWindow () {
   //window.webContents.openDevTools()
 
   window.webContents.on('new-window', function(e, url) {
-    if (!url.includes('arendelleodyssey.com')){
+    if (!url.startsWith(aourl)){
       e.preventDefault();
       require('electron').shell.openExternal(url);
     }
   });
 
   window.webContents.on('will-navigate', (e, url) => {
-    if (!url.includes('arendelleodyssey.com')){
+    console.log(e)
+    if (!url.includes(aourl)){
       e.preventDefault();
       require('electron').shell.openExternal(url);
     }
