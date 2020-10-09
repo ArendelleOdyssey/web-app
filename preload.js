@@ -21,4 +21,27 @@ window.addEventListener('DOMContentLoaded', () => {
         menu
     });
   }
+
+  var style = document.createElement('style');
+  style.innerHTML = `
+  /* Custom scrollbar */
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px 5px #75A8DB;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #AA7BB9;
+    border-radius: 20px;
+  }
+  `;
+  document.head.appendChild(style);
 })
