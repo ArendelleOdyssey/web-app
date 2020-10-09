@@ -6,6 +6,7 @@ function createWindow () {
   // Create the browser window.
     const window = new BrowserWindow({
       show : false,
+      backgroundColor: '#000F42',
       icon: 'build/icon.png',
       title: 'Arendelle Odyssey',
       frame: process.platform == 'darwin',  // the custom titlebar is useless on mac os
