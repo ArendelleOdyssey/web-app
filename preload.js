@@ -1,10 +1,9 @@
 // All of the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.
-const path = require('path');
-const url = require('url');
 const {isMacintosh} = require('@treverix/custom-electron-titlebar')
 const customTitlebar = require('@treverix/custom-electron-titlebar');
-const {Menu, MenuItem, ipcMain} = require('@treverix/remote')
+const {Menu} = require('@treverix/remote')
+const fs = require('fs')
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -23,40 +22,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   var style = document.createElement('style');
-  style.innerHTML = `
-  .titlebar{
-    z-index: 999999;
-  }
-  #wpadminbar{
-    top: 30px; !important
-  }
-  
-  /* There two selectors below is for the backsite (admin dashboard) */
-  #adminmenu{
-    margin: 40px 0; !important
-  }
-  #wpbody{
-    top: 32px; !important
-  }
-
-  /* Custom scrollbar */
-
-  /* width */
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  /* Track */
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px 5px #75A8DB;
-    border-radius: 10px;
-  }
-
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #AA7BB9;
-    border-radius: 20px;
-  }
-  `;
+  style.innerHTML = fs.readFileSync('./style.css', 'utf-8');
   document.head.appendChild(style);
 })
