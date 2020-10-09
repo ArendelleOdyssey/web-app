@@ -33,10 +33,18 @@ function createWindow () {
   //window.webContents.openDevTools()
 
   window.webContents.on('new-window', function(e, url) {
-    if (url.startsWith('https://arendelleodyssey.api.oneall.com')) return 
-    e.preventDefault();
-    require('electron').shell.openExternal(url);
+    if (!url.includes('arendelleodyssey.com')){
+      e.preventDefault();
+      require('electron').shell.openExternal(url);
+    }
   });
+
+  window.webContents.on('will-navigate', (e, url) => {
+    if (!url.includes('arendelleodyssey.com')){
+      e.preventDefault();
+      require('electron').shell.openExternal(url);
+    }
+  })
 
   window.on('ready-to-show', () => {
     window.show()
