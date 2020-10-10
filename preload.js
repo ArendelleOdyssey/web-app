@@ -22,8 +22,9 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   
   var style = document.createElement('style');
-  style.innerHTML = fs.readFileSync('./style.css', 'utf-8');
+  style.innerHTML = fs.readFileSync('style.css', 'utf-8');
+  document.head.appendChild(style);
+
   var socialLogin = document.querySelector('.oneall_social_login');
   socialLogin.parentNode.removeChild(socialLogin);
-  document.head.appendChild(style);
 })
