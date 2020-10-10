@@ -5,8 +5,7 @@ const customTitlebar = require('@treverix/custom-electron-titlebar');
 const {Menu} = require('@treverix/remote')
 const fs = require('fs')
 
-window.addEventListener('DOMContentLoaded', () => {
-
+document.addEventListener('DOMContentLoaded', (event) => {
   // It does not make sense to use the custom titlebar on macOS where
   // it only tries to simulate what we get with the normal behavior anyway.
   if (process.platform != 'darwin') {
@@ -20,11 +19,41 @@ window.addEventListener('DOMContentLoaded', () => {
         menu
     });
   }
-  
-  var style = document.createElement('style');
-  style.innerHTML = fs.readFileSync('style.css', 'utf-8');
-  document.head.appendChild(style);
+})
+
+document.addEventListener('readystatechange', (event) => {
+
+    var head = document.getElementsByTagName('head')[0];
+    var sty = document.createElement('style');
+    sty.type = 'text/css';
+    var css = `
+      .titlebar{
+          z-index: 999999;
+      }
+      .oneall_social_login{
+          visibility: hidden;
+      }
+      
+      #wpadminbar{
+          top: 30px !important;
+      }
+      
+      /* There two selectors below is for the backsite (admin dashboard) */
+      #adminmenuwrap{
+          top: 60px !important;
+      }
+      #wpbody{
+          top: 32px !important;
+      }
+      ` // You can compress all css files you need and put here
+    if (sty.styleSheet){
+      sty.styleSheet.cssText = css;
+    } else {
+      sty.appendChild(document.createTextNode(css));
+    }
+    head.appendChild(sty);
 
   var socialLogin = document.querySelector('.oneall_social_login');
   socialLogin.parentNode.removeChild(socialLogin);
-})
+});
+  
