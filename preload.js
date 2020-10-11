@@ -33,6 +33,10 @@ document.addEventListener('readystatechange', (event) => {
       .oneall_social_login{
           visibility: hidden;
       }
+
+      div.edit-post-layout.is-mode-visual.is-sidebar-opened.has-metaboxes.interface-interface-skeleton{
+        top : 30px !important;
+      }
       
       #wpadminbar{
           top: 30px !important;
