@@ -44,7 +44,11 @@ document.addEventListener('readystatechange', (event) => {
       
       /* There two selectors below is for the backsite (admin dashboard) */
       #adminmenuwrap{
-          top: 60px !important;
+        position: relative !important;
+      }
+      #adminmenu{
+        top: 30px !important;
+        margin : 40px 0 !important;
       }
       #wpbody{
           top: 32px !important;
