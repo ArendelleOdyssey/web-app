@@ -51,7 +51,8 @@ document.addEventListener('readystatechange', (event) => {
         margin : 40px 0 !important;
       }
       #wpbody{
-          top: 32px !important;
+          top: 30px !important;
+      }
       }
       ` // You can compress all css files you need and put here
     if (sty.styleSheet){
