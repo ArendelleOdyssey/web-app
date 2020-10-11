@@ -53,6 +53,15 @@ document.addEventListener('readystatechange', (event) => {
       #wpbody{
           top: 30px !important;
       }
+
+      /* Elementor */
+      #elementor-panel-header-wrapper{
+        top : 30px;
+        position: relative;
+      }
+      #elementor-panel-content-wrapper{
+        position: relative !important;
+        top: 30px !important;
       }
       ` // You can compress all css files you need and put here
     if (sty.styleSheet){
