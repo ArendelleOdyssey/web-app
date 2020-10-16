@@ -5,7 +5,7 @@
   "description": "Website application for Arendelle Odyssey",
   "main": "app.js",
   "scripts": {
-    "start": "electron .",
+    "start": "electron . --no-sandbox",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "publish": "electron-builder -p always"
@@ -44,7 +44,11 @@
       ]
     }
   },
-  "author": "Greep",
+  "author": {
+    "name": "Greep",
+    "email": "89matt89.md@gmail.com",
+    "url": "https://greep.cf/"
+  },
   "license": "none",
   "devDependencies": {
     "electron": "^10.1.3",
