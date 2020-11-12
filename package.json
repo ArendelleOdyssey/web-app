@@ -24,6 +24,7 @@
     ],
     "mac": {
       "category": "public.app-category.utilities",
+      "icon": "build/icon.png",
       "darkModeSupport": true,
       "target": "dmg",
       "publish": [
@@ -32,6 +33,7 @@
     },
     "win": {
       "publisherName": "${author} - Arendelle Odyssey",
+      "icon": "build/icon.png",
       "publish": [
         "github"
       ]
@@ -39,6 +41,7 @@
     "linux": {
       "target": "deb",
       "category": "Utility",
+      "icon": "build/icon.png",
       "publish": [
         "github"
       ]
