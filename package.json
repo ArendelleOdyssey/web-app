@@ -39,7 +39,7 @@
       ]
     },
     "linux": {
-      "target": "deb",
+      "target": "AppImage",
       "category": "Utility",
       "icon": "build/icon.png",
       "publish": [
