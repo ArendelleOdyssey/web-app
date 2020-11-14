@@ -5,7 +5,7 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 require('@treverix/remote/main').initialize()
 
-function createWindow () {
+function createWindow (callback) {
   // Create the browser window.
     const window = new BrowserWindow({
       show : false,
@@ -30,7 +30,7 @@ function createWindow () {
     //window.loadFile('content/index.html')
     window.loadURL(aourl)
 
-    if (!window.isMaximized()) window.maximize()
+    //if (!window.isMaximized()) window.maximize()
 
   // Open the DevTools.
   //window.webContents.openDevTools()
@@ -50,15 +50,39 @@ function createWindow () {
   })
 
   window.on('ready-to-show', () => {
+    if (!window.isMaximized()) window.maximize()
     window.show()
+    if (callback) callback()
   })
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(createWindow)
-//app.on('ready', createWindow);
+//app.whenReady().then(createWindow)
+app.on('ready', () => {
+  const useH = 400
+  const useW = 400
+
+  let logoWindow = new BrowserWindow({
+    width: useW,
+    height: useH,
+    transparent: true,
+    icon: 'build/icon.png',
+    title: 'Arendelle Odyssey',
+    frame: false,
+    center: true,
+    show: false
+  });
+  logoWindow.loadURL(`file://${__dirname}/build/logowindow.html`);
+  logoWindow.once('ready-to-show', () => {
+    logoWindow.show();
+  });
+  const closeLogoWindow = () => {
+    logoWindow.close();
+  };
+  createWindow(closeLogoWindow);
+});
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
