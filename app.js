@@ -92,7 +92,7 @@ app.on('ready', async () => {
   closeLogoWindow = () => {
     logoWindow.close();
   };
-  logoWindow.webContents.openDevTools()
+  //logoWindow.webContents.openDevTools()
   //await wait(5000)
   
 });
