@@ -4,6 +4,7 @@ const aourl = 'https://arendelleodyssey.com'
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 require('@treverix/remote/main').initialize()
+const wait = require('util').promisify(setTimeout);
 
 function createWindow (callback) {
   // Create the browser window.
@@ -60,9 +61,9 @@ function createWindow (callback) {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 //app.whenReady().then(createWindow)
-app.on('ready', () => {
-  const useH = 400
-  const useW = 400
+app.on('ready', async () => {
+  const useH = 500
+  const useW = 500
 
   let logoWindow = new BrowserWindow({
     width: useW,
@@ -81,6 +82,7 @@ app.on('ready', () => {
   const closeLogoWindow = () => {
     logoWindow.close();
   };
+  await wait(5500)
   createWindow(closeLogoWindow);
 });
 
