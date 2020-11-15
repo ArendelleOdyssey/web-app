@@ -23,6 +23,7 @@
             #facttxt{
                 font-family: Arial, Helvetica, sans-serif;
                 font-style: italic;
+                color: rgba(255, 255, 255, 0.25);
             }
         </style>
 
@@ -40,14 +41,7 @@
             }
 
             $.getJSON("loadingTexts.json", (json) =>{
-                var text = randomItem(json)
-                var displayText = document.getElementById('displaytxt')
-                displayText.innerText = text
-
-                var dots = window.setInterval( function() {
-                    if ( displayText.innerText.length == text.length + 3 ) displayText.innerText = text;
-                    else displayText.innerText += ".";
-                }, 500);
+                document.getElementById('displaytxt').innerText = randomItem(json)
             })
 
             $.getJSON("factTexts.json", (json) =>{

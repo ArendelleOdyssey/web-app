@@ -5,6 +5,7 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 require('@treverix/remote/main').initialize()
 const wait = require('util').promisify(setTimeout);
+var closeLogoWindow
 
 function createWindow (callback) {
   // Create the browser window.
@@ -68,10 +69,15 @@ app.on('ready', async () => {
   let logoWindow = new BrowserWindow({
     width: useW,
     height: useH,
+    webPreferences: {
+      enableRemoteModule: true,
+      preload: path.join(__dirname, 'loadingWindow', 'preload.js'),
+      nodeIntegration: false,
+    },
     transparent: false,
     backgroundColor: '#252525',
     icon: 'build/icon.png',
-    title: 'Arendelle Odyssey',
+    title: 'Loading AO Web App...',
     frame: false,
     center: true,
     show: false
@@ -83,12 +89,17 @@ app.on('ready', async () => {
   logoWindow.once('ready-to-show', () => {
     logoWindow.show();
   });
-  const closeLogoWindow = () => {
+  closeLogoWindow = () => {
     logoWindow.close();
   };
-  await wait(5000)
-  createWindow(closeLogoWindow);
+  logoWindow.webContents.openDevTools()
+  //await wait(5000)
+  
 });
+
+ipcMain.on('online', () => {
+  createWindow(closeLogoWindow);
+})
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
