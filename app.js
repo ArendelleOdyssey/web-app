@@ -62,28 +62,31 @@ function createWindow (callback) {
 // Some APIs can only be used after this event occurs.
 //app.whenReady().then(createWindow)
 app.on('ready', async () => {
-  const useH = 400
+  const useH = 500
   const useW = 400
 
   let logoWindow = new BrowserWindow({
     width: useW,
     height: useH,
-    transparent: true,
+    transparent: false,
+    backgroundColor: '#252525',
     icon: 'build/icon.png',
     title: 'Arendelle Odyssey',
     frame: false,
     center: true,
     show: false
   });
-  logoWindow.loadURL(`${aourl}/web-app/start.html`);
+  // logoWindow.loadURL(`${aourl}/web-app/start.html`);
   // logoWindow.loadURL(`https://github.com/ArendelleOdyssey/web-app/raw/main/build/logowindow.html`);
+  // logoWindow.loadFile('build/logowindow.html')
+  logoWindow.loadURL(`file://${__dirname}/loadingWindow/logowindow.html`)
   logoWindow.once('ready-to-show', () => {
     logoWindow.show();
   });
   const closeLogoWindow = () => {
     logoWindow.close();
   };
-  await wait(5500)
+  await wait(5000)
   createWindow(closeLogoWindow);
 });
 

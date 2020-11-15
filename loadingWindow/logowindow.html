@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            @font-face {
+                font-family: ice-kingdom;
+                src: url(./ice-kingdom.woff2);
+            }
+            body{
+                overflow: hidden;
+                pointer-events: none;
+                user-select: none;
+                -webkit-app-region: drag;
+
+                display: block;
+                margin: auto;
+                color: white;
+                text-align: center;
+            }
+            #displaytxt{
+                font-family: ice-kingdom;
+            }
+            #facttxt{
+                font-family: Arial, Helvetica, sans-serif;
+                font-style: italic;
+            }
+        </style>
+
+        <script src="./jquery-3.5.1.min.js"></script>
+    </head>
+    <body>
+        <img src="./AOanim.gif" height="400" weight="400">
+        <br />
+        <h2 id="displaytxt"></h2>
+        <h4 id="facttxt"></h4>
+
+        <script>
+            function randomItem(array) {
+                return array[Math.floor(Math.random() * array.length)];
+            }
+
+            $.getJSON("loadingTexts.json", (json) =>{
+                var text = randomItem(json)
+                var displayText = document.getElementById('displaytxt')
+                displayText.innerText = text
+
+                var dots = window.setInterval( function() {
+                    if ( displayText.innerText.length == text.length + 3 ) displayText.innerText = text;
+                    else displayText.innerText += ".";
+                }, 500);
+            })
+
+            $.getJSON("factTexts.json", (json) =>{
+                document.getElementById('facttxt').innerText = randomItem(json)
+            })
+        </script>
+    </body>
+</html>

@@ -14,7 +14,12 @@
     "appId": "com.arendelleodyssey.webapp",
     "productName": "Arendelle Odyssey (Web App)",
     "copyright": "${author}",
-    "artifactName": "${productName} Installer.${ext}",
+    "artifactName": "${name}-setup-${version}.${ext}",
+    "asar": false,
+    "extraResources": {
+      "from": "./build",
+      "to": "app/build"
+    },
     "publish": [
       {
         "provider": "github",
