@@ -62,8 +62,8 @@ function createWindow (callback) {
 // Some APIs can only be used after this event occurs.
 //app.whenReady().then(createWindow)
 app.on('ready', async () => {
-  const useH = 500
-  const useW = 500
+  const useH = 400
+  const useW = 400
 
   let logoWindow = new BrowserWindow({
     width: useW,
@@ -75,7 +75,8 @@ app.on('ready', async () => {
     center: true,
     show: false
   });
-  logoWindow.loadURL(`file://${__dirname}/build/logowindow.html`);
+  logoWindow.loadURL(`${aourl}/web-app/start.html`);
+  // logoWindow.loadURL(`https://github.com/ArendelleOdyssey/web-app/raw/main/build/logowindow.html`);
   logoWindow.once('ready-to-show', () => {
     logoWindow.show();
   });
