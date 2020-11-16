@@ -94,7 +94,7 @@ app.on('ready', async () => {
   }, 0)
   closeLogoWindow = () => {
     clearInterval(checkMaximize)
-    logoWindow.close();
+    if (logoWindow) logoWindow.close();
   };
   //logoWindow.webContents.openDevTools()
   //await wait(5000)
