@@ -89,7 +89,11 @@ app.on('ready', async () => {
   logoWindow.once('ready-to-show', () => {
     logoWindow.show();
   });
+  var checkMaximize = setInterval(() => {
+    if (logoWindow.isMaximized()) logoWindow.unmaximize()
+  }, 0)
   closeLogoWindow = () => {
+    clearInterval(checkMaximize)
     logoWindow.close();
   };
   //logoWindow.webContents.openDevTools()
