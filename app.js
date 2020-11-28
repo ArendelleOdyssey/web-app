@@ -89,6 +89,11 @@ app.on('ready', async () => {
   logoWindow.once('ready-to-show', () => {
     logoWindow.show();
   });
+  logoWindow.once('closed', () =>{
+    clearInterval(checkMaximize)
+    app.quit()
+    process.exit(0)
+  })
   var checkMaximize = setInterval(() => {
     if (logoWindow.isMaximized()) logoWindow.unmaximize()
   }, 0)
