@@ -6,6 +6,7 @@ const path = require('path')
 require('@treverix/remote/main').initialize()
 const wait = require('util').promisify(setTimeout);
 var closeLogoWindow
+var resolved = false
 
 function createWindow (callback) {
   // Create the browser window.
@@ -90,9 +91,10 @@ app.on('ready', async () => {
     logoWindow.show();
   });
   logoWindow.once('closed', () =>{
-    clearInterval(checkMaximize)
-    app.quit()
-    process.exit(0)
+    if (resolved = false) {
+      app.quit()
+      process.exit(0)
+    }
   })
   var checkMaximize = setInterval(() => {
     if (logoWindow.isMaximized()) logoWindow.unmaximize()
@@ -107,6 +109,7 @@ app.on('ready', async () => {
 });
 
 ipcMain.on('online', () => {
+  resolved = true
   createWindow(closeLogoWindow);
 })
 
