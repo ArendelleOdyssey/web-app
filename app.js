@@ -6,7 +6,6 @@ const path = require('path')
 require('@treverix/remote/main').initialize()
 const wait = require('util').promisify(setTimeout);
 var closeLogoWindow
-var resolved = false
 
 function createWindow (callback) {
   // Create the browser window.
@@ -63,6 +62,7 @@ function createWindow (callback) {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 //app.whenReady().then(createWindow)
+var resolved
 app.on('ready', async () => {
   const useH = 500
   const useW = 400
@@ -89,23 +89,26 @@ app.on('ready', async () => {
   logoWindow.loadURL(`file://${__dirname}/loadingWindow/logowindow.html`)
   logoWindow.once('ready-to-show', () => {
     logoWindow.show();
+    resolved = false
   });
-  logoWindow.once('closed', () =>{
-    if (resolved = false) {
+  var checkMaximize = setInterval(() => {
+    if (logoWindow) logoWindow.unmaximize()
+  }, 0)
+  closeLogoWindow = () => {
+    clearInterval(checkMaximize)
+    logoWindow.close();
+  };
+
+  //logoWindow.webContents.openDevTools()
+  //await wait(5000)
+
+  logoWindow.once('close', () =>{
+    logoWindow = null
+    if (resolved == false) {
       app.quit()
       process.exit(0)
     }
   })
-  var checkMaximize = setInterval(() => {
-    if (logoWindow.isMaximized()) logoWindow.unmaximize()
-  }, 0)
-  closeLogoWindow = () => {
-    clearInterval(checkMaximize)
-    if (logoWindow) logoWindow.close();
-  };
-  //logoWindow.webContents.openDevTools()
-  //await wait(5000)
-  
 });
 
 ipcMain.on('online', () => {
