@@ -32,8 +32,6 @@ function createWindow (callback) {
     //window.loadFile('content/index.html')
     window.loadURL(aourl)
 
-    window.setalwaysontop("true"); 
-
     //if (!window.isMaximized()) window.maximize()
 
   // Open the DevTools.
@@ -89,6 +87,7 @@ app.on('ready', async () => {
   // logoWindow.loadURL(`https://github.com/ArendelleOdyssey/web-app/raw/main/build/logowindow.html`);
   // logoWindow.loadFile('build/logowindow.html')
   logoWindow.loadURL(`file://${__dirname}/loadingWindow/logowindow.html`)
+  logoWindow.setAlwaysOnTop(true); 
   logoWindow.once('ready-to-show', () => {
     logoWindow.show();
     resolved = false
