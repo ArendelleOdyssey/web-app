@@ -32,6 +32,8 @@ function createWindow (callback) {
     //window.loadFile('content/index.html')
     window.loadURL(aourl)
 
+    window.setalwaysontop("true"); 
+
     //if (!window.isMaximized()) window.maximize()
 
   // Open the DevTools.
@@ -78,7 +80,7 @@ app.on('ready', async () => {
     transparent: false,
     backgroundColor: '#252525',
     icon: 'build/icon.png',
-    title: 'Loading AO Web App...',
+    title: 'Loading Arendelle Odyssey',
     frame: false,
     center: true,
     show: false
@@ -113,7 +115,10 @@ app.on('ready', async () => {
 
 ipcMain.on('online', () => {
   resolved = true
-  createWindow(closeLogoWindow);
+  createWindow();
+})
+ipcMain.on('closeLoad', () => {
+  closeLogoWindow()
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common

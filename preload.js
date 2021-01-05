@@ -3,7 +3,9 @@
 const {isMacintosh} = require('@treverix/custom-electron-titlebar')
 const customTitlebar = require('@treverix/custom-electron-titlebar');
 const {Menu} = require('@treverix/remote')
+var {ipcRenderer} = require('electron')
 const fs = require('fs')
+var loadWindow = true
 
 document.addEventListener('DOMContentLoaded', (event) => {
   // It does not make sense to use the custom titlebar on macOS where
@@ -23,6 +25,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 document.addEventListener('readystatechange', (event) => {
 
+  if (document.readyState == 'complete' && loadWindow) {
+    ipcRenderer.send('closeLoad');
+    loadWindow = false
+  }
+  if (document.readyState == 'interactive'){
     var head = document.getElementsByTagName('head')[0];
     var sty = document.createElement('style');
     sty.type = 'text/css';
@@ -33,7 +40,7 @@ document.addEventListener('readystatechange', (event) => {
       .oneall_social_login{
           visibility: hidden;
       }
-
+  
       div.edit-post-layout.is-mode-visual.is-sidebar-opened.has-metaboxes.interface-interface-skeleton{
         top : 30px !important;
       }
@@ -53,7 +60,7 @@ document.addEventListener('readystatechange', (event) => {
       #wpbody{
           top: 30px !important;
       }
-
+  
       /* Elementor */
       #elementor-panel-header-wrapper{
         top : 30px;
@@ -70,8 +77,9 @@ document.addEventListener('readystatechange', (event) => {
       sty.appendChild(document.createTextNode(css));
     }
     head.appendChild(sty);
-
-  var socialLogin = document.querySelector('.oneall_social_login');
-  socialLogin.parentNode.removeChild(socialLogin);
+  
+    var socialLogin = document.querySelector('.oneall_social_login');
+    socialLogin.parentNode.removeChild(socialLogin);
+  }
 });
   
