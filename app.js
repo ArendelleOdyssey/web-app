@@ -110,14 +110,15 @@ app.on('ready', async () => {
       process.exit(0)
     }
   })
+  
+  ipcMain.on('closeLoad', () => {
+    if (logoWindow != null) closeLogoWindow()
+  })
 });
 
 ipcMain.on('online', () => {
   resolved = true
   createWindow();
-})
-ipcMain.on('closeLoad', () => {
-  closeLogoWindow()
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common
