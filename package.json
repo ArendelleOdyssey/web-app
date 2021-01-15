@@ -58,7 +58,7 @@
     "electron-builder": "^22.9.1"
   },
   "dependencies": {
-    "@treverix/custom-electron-titlebar": "^4.1.6",
+    "@treverix/custom-electron-titlebar": "^4.1.7",
     "@treverix/remote": "^0.1.1",
     "electron-updater": "^4.3.5",
     "ping": "^0.3.0"
