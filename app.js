@@ -1,10 +1,9 @@
 const { autoUpdater } = require("electron-updater")
 autoUpdater.checkForUpdatesAndNotify()
-const aourl = 'https://arendelleodyssey.com'
+const aodns = 'arendelleodyssey.com'
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 require('@treverix/remote/main').initialize()
-const wait = require('util').promisify(setTimeout);
 var closeLogoWindow
 
 function createWindow (callback) {
@@ -30,7 +29,7 @@ function createWindow (callback) {
 
     // and load the index.html of the app.
     //window.loadFile('content/index.html')
-    window.loadURL(aourl)
+    window.loadURL('https://'+aodns)
 
     //if (!window.isMaximized()) window.maximize()
 
@@ -38,14 +37,14 @@ function createWindow (callback) {
   //window.webContents.openDevTools()
 
   window.webContents.on('new-window', function(e, url) {
-    if (!url.startsWith(aourl)){
+    if (!url.includes(aodns)){
       e.preventDefault();
       require('electron').shell.openExternal(url);
     }
   });
 
   window.webContents.on('will-navigate', (e, url) => {
-    if (!url.includes(aourl)){
+    if (!url.includes(aodns)){
       e.preventDefault();
       require('electron').shell.openExternal(url);
     }
@@ -83,9 +82,6 @@ app.on('ready', async () => {
     center: true,
     show: false
   });
-  // logoWindow.loadURL(`${aourl}/web-app/start.html`);
-  // logoWindow.loadURL(`https://github.com/ArendelleOdyssey/web-app/raw/main/build/logowindow.html`);
-  // logoWindow.loadFile('build/logowindow.html')
   logoWindow.loadURL(`file://${__dirname}/loadingWindow/logowindow.html`)
   logoWindow.setAlwaysOnTop(true); 
   logoWindow.once('ready-to-show', () => {
