@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     new customTitlebar.Titlebar({
         backgroundColor: customTitlebar.Color.fromHex('#000F42'),
-        icon: 'https://cdn.discordapp.com/attachments/729829070572879904/729833823403245647/logo_final_final.png',
+        icon: `./build/icon.png`,
         menu
     });
   }
