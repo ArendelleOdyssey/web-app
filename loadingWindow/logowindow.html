@@ -32,7 +32,7 @@
     <body>
         <img src="./AOanim.gif" height="400" weight="400">
         <br />
-        <h2 id="displaytxt"></h2>
+        <h2 id="displaytxt">Loading AO Web app</h2>
         <h4 id="facttxt"></h4>
 
         <script>
@@ -40,11 +40,7 @@
                 return array[Math.floor(Math.random() * array.length)];
             }
 
-            $.getJSON("loadingTexts.json", (json) =>{
-                document.getElementById('displaytxt').innerText = randomItem(json)
-            })
-
-            $.getJSON("factTexts.json", (json) =>{
+            $.getJSON("https://raw.githubusercontent.com/ArendelleOdyssey/desktop-app/main/src/content/loadWindow/factTexts.json", (json) =>{
                 document.getElementById('facttxt').innerText = randomItem(json)
             })
         </script>
