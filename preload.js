@@ -20,16 +20,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         icon: `./build/icon.png`,
         menu
     });
-  }
-})
 
-document.addEventListener('readystatechange', (event) => {
-
-  if (document.readyState == 'complete' && loadWindow) {
-    ipcRenderer.send('closeLoad');
-    loadWindow = false
-  }
-  if (document.readyState == 'interactive'){
     var head = document.getElementsByTagName('head')[0];
     var sty = document.createElement('style');
     sty.type = 'text/css';
@@ -58,9 +49,17 @@ document.addEventListener('readystatechange', (event) => {
         margin : 40px 0 !important;
       }
       #wpbody{
-          top: 30px !important;
+        margin-top: 30px !important;
       }
-  
+
+      ${window.location.href.startsWith('https://arendelleodyssey.com') ?'':`
+      body{
+        margin-top: 30px !important;
+      }
+      nav{
+        margin-top: 30px !important;
+      }`}
+      
       /* Elementor */
       #elementor-panel-header-wrapper{
         top : 30px;
@@ -80,6 +79,14 @@ document.addEventListener('readystatechange', (event) => {
   
     var socialLogin = document.querySelector('.oneall_social_login');
     socialLogin.parentNode.removeChild(socialLogin);
+  }
+})
+
+document.addEventListener('readystatechange', (event) => {
+
+  if (document.readyState == 'complete' && loadWindow) {
+    ipcRenderer.send('closeLoad');
+    loadWindow = false
   }
 });
   
