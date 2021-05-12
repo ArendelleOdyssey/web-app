@@ -55,7 +55,7 @@
   "license": "none",
   "devDependencies": {
     "electron": "^10.3.0",
-    "electron-builder": "^22.11.1"
+    "electron-builder": "^22.11.3"
   },
   "dependencies": {
     "@treverix/custom-electron-titlebar": "^4.1.7",
